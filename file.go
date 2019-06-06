@@ -30,14 +30,14 @@ func ReadLine(fileName string, handler func(string), lock bool) error {
 	buf := bufio.NewReader(f)
 	for {
 		line, err := buf.ReadString('\n')
-		line = strings.TrimSpace(line)
-		handler(line)
 		if err != nil {
 			if err == io.EOF {
 				break
 			}
 			return err
 		}
+		line = strings.TrimSpace(line)
+		handler(line)
 	}
 	return nil
 }
